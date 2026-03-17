@@ -133,6 +133,8 @@ class GUISublist3r(tk.Tk):
                         "netcraft","dnsdumpster","virustotal",
                         "threatcrowd","ssl","passivedns","shrewdeye"]
         self._engine_vars = {}
+        self._dns_key_var = tk.StringVar()
+        self._vt_key_var  = tk.StringVar()
 
         eng_outer = tk.Frame(parent, bg=CARD, highlightbackground=BORDER,
                               highlightthickness=1)
@@ -147,6 +149,30 @@ class GUISublist3r(tk.Tk):
                                 activeforeground=TEXT_PRI, anchor="w",
                                 relief="flat", bd=0)
             cb.pack(fill="x", padx=10, pady=1)
+
+            # API key entry under DNSdumpster
+            if key == "dnsdumpster":
+                dns_row = tk.Frame(eng_outer, bg=CARD)
+                dns_row.pack(fill="x", padx=(28, 10), pady=(0, 3))
+                tk.Label(dns_row, text="API key:", font=FONT_TINY,
+                         fg=TEXT_SEC, bg=CARD, width=7, anchor="w").pack(side="left")
+                dns_entry = tk.Entry(dns_row, textvariable=self._dns_key_var,
+                                     font=("Consolas", 8), fg=TEXT_PRI, bg=BORDER,
+                                     insertbackground=ACCENT, relief="flat",
+                                     bd=4, highlightthickness=0)
+                dns_entry.pack(side="left", fill="x", expand=True, ipady=2)
+
+            # API key entry under VirusTotal
+            if key == "virustotal":
+                vt_row = tk.Frame(eng_outer, bg=CARD)
+                vt_row.pack(fill="x", padx=(28, 10), pady=(0, 3))
+                tk.Label(vt_row, text="API key:", font=FONT_TINY,
+                         fg=TEXT_SEC, bg=CARD, width=7, anchor="w").pack(side="left")
+                vt_entry = tk.Entry(vt_row, textvariable=self._vt_key_var,
+                                    font=("Consolas", 8), fg=TEXT_PRI, bg=BORDER,
+                                    insertbackground=ACCENT, relief="flat",
+                                    bd=4, highlightthickness=0, show="*")
+                vt_entry.pack(side="left", fill="x", expand=True, ipady=2)
 
         all_frame = tk.Frame(parent, bg=BG)
         all_frame.pack(fill="x", pady=(4, 0))
@@ -341,9 +367,18 @@ class GUISublist3r(tk.Tk):
         if engines_str:
             cmd += ["-e", engines_str]
 
-        threading.Thread(target=self._run_proc, args=(cmd,), daemon=True).start()
+        # build env with any API keys the user supplied
+        env = os.environ.copy()
+        dns_key = self._dns_key_var.get().strip()
+        vt_key  = self._vt_key_var.get().strip()
+        if dns_key:
+            env["DNSDUMPSTER_API_KEY"] = dns_key
+        if vt_key:
+            env["VTAPIKEY"] = vt_key
 
-    def _run_proc(self, cmd):
+        threading.Thread(target=self._run_proc, args=(cmd, env), daemon=True).start()
+
+    def _run_proc(self, cmd, env=None):
         try:
             self._proc = subprocess.Popen(
                 cmd,
@@ -351,7 +386,8 @@ class GUISublist3r(tk.Tk):
                 stderr=subprocess.STDOUT,
                 text=True,
                 bufsize=1,
-                cwd=SCRIPT_DIR
+                cwd=SCRIPT_DIR,
+                env=env
             )
             subdomain_re = re.compile(
                 r'^(?!.*[-]\s)([a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}$'
