@@ -1,6 +1,6 @@
 # GUISublist3r
 
-A graphical interface wrapper for [Sublist3r v2.0](https://github.com/hxlxmj/sublist3rV2) — built for people who want subdomain enumeration without touching the command line.
+A graphical interface wrapper for [Sublist3r v2.0](https://github.com/hxlxmj/sublist3rV2) built for people who want subdomain enumeration without touching the command line.
 
 It adds a clean GUI on top of the original tool, making it easy to plug in API keys, select search engines, and export results without needing to know any terminal commands.
 
@@ -37,9 +37,9 @@ Permissions of this strong copyleft license are conditioned on making available 
 
 ## Credits
 
-- **Ahmed Aboul-Ela** — original creator of Sublist3r
-- **[hxlxmj](https://github.com/hxlxmj)** — creator of Sublist3r v2.0 that this GUI is based on
-- **TheRook** — the bruteforce module was based on his script subbrute
-- **Bitquark** — the subbrute wordlist was based on his research dnspop
-- **zzzteph** — API of resource discovery was based on his script ShrewdEye
-- **Ibrahim Mosaad** — for his great contributions that helped in improving the tool
+* [hxlxmj](https://github.com/hxlxmj)** — creator of Sublist3r v2.0 that this GUI is based on
+* [Ahmed Aboul-Ela](https://github.com/bitquark) - The original creator of **Sublist3r**.
+* [TheRook](https://github.com/TheRook) - The bruteforce module was based on his script **subbrute**. 
+* [Bitquark](https://github.com/bitquark) - The Subbrute's wordlist was based on his research **dnspop**. 
+* [zzzteph](https://github.com/zzzteph) - API of resource discovery was based on his script **ShrewdEye**. 
+* [Ibrahim Mosaad](https://twitter.com/ibrahim_mosaad) for his great contributions that helped in improving the tool.
