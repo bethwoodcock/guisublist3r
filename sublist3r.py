@@ -80,7 +80,7 @@ def banner():
             _\ \ |_| | |_) | | \__ \ |_ ___) | |
             \__/\__,_|_.__/|_|_|___/\__|____/|_|   V2.0%s%s
 
-            ▶ Halim Jabbes - linkedin.com/in/hxlxmj
+>> Halim Jabbes - linkedin.com/in/hxlxmj
 
     """ % (R, W, Y))
 
