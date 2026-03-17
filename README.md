@@ -1,139 +1,45 @@
-<p align="center">
-<a href="https://github.com/hxlxmjxbbxs/SUBLIST3R_V2.0"><img src="assets/img (1).jpg" width=250px align="center"></a>
-</p>
+# GUISublist3r
 
-# SUBLISTER VERSION 2.0
+A graphical interface wrapper for [Sublist3r v2.0](https://github.com/hxlxmj/sublist3rV2) — built for people who want subdomain enumeration without touching the command line.
 
-## Overview
-Sublist3r v2.0 is a sophisticated tool specializing in automated subdomain enumeration designed for penetration testers and security researchers. This advanced version builds upon the robust foundation of Sublist3r v1.0, integrating significant enhancements and novel features to offer a more dynamic and efficient tool for unearthing subdomains of any given domain.
+It adds a clean GUI on top of the original tool, making it easy to plug in API keys, select search engines, and export results without needing to know any terminal commands.
 
-### 🌟 What's New
+---
 
-- Resolved Virustotal API integration issues, enhancing data reliability and enumeration scope. 
-- Added ShrewdEye for broader and more unique subdomain discovery.
-- Refined and optimized enumerator modules for various search engines, ensuring more efficient data retrieval and processing.
-- Improved error handling and performance optimization.
-- Advanced port scanning capabilities, complementing subdomain enumeration with network service insights.
+## Installation
 
-### Version (1.0) VS Version (2.0)
+1. Download all the files from this repository
+2. Open the folder, click the address bar, type `cmd` and press Enter
+3. Run the following to install all dependencies:
+   ```
+   pip install -r requirements.txt
+   ```
+4. Double-click **GUISublist3r.bat** — that's it
 
-<strong>PoC</strong>: https://youtu.be/i53WTvWVcRA
+---
 
-### 📸 Code Comparison Snapshot
-Above: A visual comparison showcasing the differences between the old implementation and my updated version.
+## Usage
 
-<p align="center">
-<a href="https://github.com/aboul3la/Sublist3r/compare/master...hxlxmjxbbxs:Sublist3r:fix-virustotal-api-compatibility"><img src="assets/img (3).jpg" align="center"></a>
-</p>
+- Enter the domain you want to enumerate in the Target Domain box
+- Tick the search engines you want to use (API key fields appear under DNSdumpster and VirusTotal)
+- Click **Run Scan**
+- Results appear in real time — export to a `.txt` file wherever you like when done
 
-### Key Updates
-In Sublist3r v1.0, there were notable issues related to Virustotal integration, as reported by users on the [GitHub issues page](https://github.com/aboul3la/Sublist3r/issues?page=2&q=is%3Aissue+is%3Aopen+virustotal). 
+---
 
-<p align="center">
-<a href="https://github.com/hxlxmjxbbxs/SUBLIST3R_V2.0"><img src="assets/img (4).jpg" align="center"></a>
-</p>
+## Licence
 
-These issues primarily involved:
-#### 🚫 Virustotal Blocking Requests: 
-- Users frequently encountered problems where Virustotal was blocking the requests made by Sublist3r. This issue significantly hindered the tool's ability to fetch subdomain data from Virustotal, thereby reducing its effectiveness.
+GNU General Public License v3.0
 
-#### ❌ API Integration Challenges: 
-- There were difficulties in integrating with the Virustotal API correctly, which may include problems with API keys or changes in the API itself that were not reflected in Sublist3r.
+Permissions of this strong copyleft license are conditioned on making available complete source code of licensed works and modifications, which include larger works using a licensed work, under the same license. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights.
 
-#### 😞 User Experience: 
-- Due to these integration issues, users often had to resort to temporary fixes, such as skipping Virustotal during enumeration or manually commenting out related code segments. This not only affected the tool's user-friendliness but also its efficiency in subdomain enumeration.
+---
 
-#### ✅ In Sublist3r v2.0: 
-All these specific issues have been addressed and optimized to ensure a smoother, more reliable integration with Virustotal. Additionally, the integration of ShrewdEye as a new source for subdomain enumeration adds to the tool's capabilities, enhancing its overall performance and the breadth of its attack surface. This update positions Sublist3r v2.0 as a more robust and reliable tool for subdomain discovery in security assessments and penetration testing scenarios.
+## Credits
 
-### 🛠 Installation & Setup
-System Requirements
-
-#### Python Version:
-Sublist3r supports Python 2 (2.7.x) and Python 3 (3.4.x).
-
-### Installing Sublist3r
-
-Clone the repository:
-
-```bash
-git clone https://github.com/hxlxmjxbbxs/SUBLIST3R_V2.0
-```
-
-### Dependencies
-Sublist3r depends on requests, dnspython, and argparse. 
-These can be installed using the requirements file:
-
-### Windows:
-```bash
-c:\python27\python.exe -m pip install -r requirements.txt
-```
-
-### Linux:
-```bash
-sudo pip install -r requirements.txt
-```
-
-### Additional Windows Dependencies
-
-For coloring support in the Windows terminal, install win_unicode_console and colorama:
-```bash
-C:\python27\python.exe -m pip install win_unicode_console colorama
-```
-
-### Set VirusTotal API Key Environment Variable
-
-### Windows:
-```batch
-setx VTAPIKEY "Your_VirusTotal_API_Key_Here"
-```
-
-### Linux:
-```bash
-echo 'export VTAPIKEY="Your_VirusTotal_API_Key_Here"' >> ~/.bashrc
-source ~/.bashrc
-```
-
-### ⚙️ Usage Instructions
-```bash
-Usage: python sublist3r.py [Options]
-
-Options:
-  -d, --domain         Domain name to enumerate subdomains
-  -b, --bruteforce     Enable the subbrute bruteforce module
-  -p, --ports          Scan the found subdomains against specified tcp ports
-  -v, --verbose        Enable verbosity and display results in real-time
-  -t, --threads        Number of threads to use for subbrute bruteforce
-  -e, --engines        Specify a comma-separated list of search engines
-  -o, --output         Save the results to text file
-  -n, --no-color       Output without color
-
-Example:
-  python sublist3r.py -d example.com -v -t 30 -o output.txt
-
-```
-
-Enumerate subdomains for a specific domain:
-
-```bash
-python sublist3r.py -d example.com
-```
-
-### 📄 License
-
-Sublist3r is distributed under the GNU GPL license, which allows for widespread use and modification. For more details, please refer to the [LICENSE](https://github.com/hxlxmjxbbxs/SUBLIST3R_V2.0/blob/main/LICENSE).
-
-### 🤝 Credits and Acknowledgements
-
-* [Ahmed Aboul-Ela](https://github.com/bitquark) - The original creator of **Sublist3r**.
-* [TheRook](https://github.com/TheRook) - The bruteforce module was based on his script **subbrute**. 
-* [Bitquark](https://github.com/bitquark) - The Subbrute's wordlist was based on his research **dnspop**. 
-* [zzzteph](https://github.com/zzzteph) - API of resource discovery was based on his script **ShrewdEye**. 
-* [Ibrahim Mosaad](https://twitter.com/ibrahim_mosaad) for his great contributions that helped in improving the tool.
-
-### 📢 Version
-
-<p align="center">
-<a href="https://github.com/hxlxmjxbbxs/SUBLIST3R_V2.0"><img src="assets/img (2).jpg" align="center"></br></a></br>
-<strong>Current Version:</strong> 2.0
-</p>
+- **Ahmed Aboul-Ela** — original creator of Sublist3r
+- **[hxlxmj](https://github.com/hxlxmj)** — creator of Sublist3r v2.0 that this GUI is based on
+- **TheRook** — the bruteforce module was based on his script subbrute
+- **Bitquark** — the subbrute wordlist was based on his research dnspop
+- **zzzteph** — API of resource discovery was based on his script ShrewdEye
+- **Ibrahim Mosaad** — for his great contributions that helped in improving the tool
